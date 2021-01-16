@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="roguelike"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;CMake Files\..\;CMake Files\..\..\;CMake Files\..\..\..\;CMake Files\..\..\..\..\;CMake Files\..\..\..\..\Libraries\;CMake Files\..\..\..\..\Libraries\SFML\;CMake Files\..\..\..\..\Libraries\SFML\lib\;CMake Files\..\..\..\..\Libraries\SFML\lib\cmake\;CMake Files\..\..\..\..\Libraries\SFML\lib\cmake\SFML\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="roguelike">
+				<Option output="C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/roguelike.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSFML_STATIC"/>
+					<Add directory="C:/Users/mrnos/CLionProjects/roguelike/imgs"/>
+					<Add directory="C:/Libraries/SFML/include"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 roguelike"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="roguelike/fast">
+				<Option output="C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/roguelike.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add option="-DSFML_STATIC"/>
+					<Add directory="C:/Users/mrnos/CLionProjects/roguelike/imgs"/>
+					<Add directory="C:/Libraries/SFML/include"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/x86_64-w64-mingw32"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="C:/MinGW/bin/../lib/gcc/x86_64-w64-mingw32/8.1.0/../../../../x86_64-w64-mingw32/include"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 roguelike/fast"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/Character.cpp">
+			<Option target="roguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/Character.h">
+			<Option target="roguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/GameTile.cpp">
+			<Option target="roguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/GameTile.h">
+			<Option target="roguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/GameWorld.cpp">
+			<Option target="roguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/GameWorld.h">
+			<Option target="roguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/Types.h">
+			<Option target="roguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/main.cpp">
+			<Option target="roguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/otrisovka.cpp">
+			<Option target="roguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/otrisovka.h">
+			<Option target="roguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/../../../../Libraries/SFML/lib/cmake/SFML/SFMLConfig.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Libraries\SFML\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/../../../../Libraries/SFML/lib/cmake/SFML/SFMLConfigDependencies.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Libraries\SFML\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/../../../../Libraries/SFML/lib/cmake/SFML/SFMLConfigVersion.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Libraries\SFML\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/../../../../Libraries/SFML/lib/cmake/SFML/SFMLStaticTargets-debug.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Libraries\SFML\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/../../../../Libraries/SFML/lib/cmake/SFML/SFMLStaticTargets-release.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Libraries\SFML\lib\cmake\SFML\"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/../../../../Libraries/SFML/lib/cmake/SFML/SFMLStaticTargets.cmake">
+			<Option virtualFolder="CMake Files\..\..\..\..\Libraries\SFML\lib\cmake\SFML\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>
