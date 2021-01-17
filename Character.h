@@ -29,6 +29,7 @@ public:
     sf::Vector2i GetPosition() override;
     void update(float,Otrisovka& otrisovka);
     void interaction_with_the_map(Otrisovka& otrisovka);
+    void addHP(int hp);
 };
 
 class Zombie : public Character {

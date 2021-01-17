@@ -4,7 +4,7 @@
 
 Knight::Knight() {
     this->type = Type::player;
-    this->health = 100;
+    this->health = 60;
     this->max_health = 100;
     this->damage = 10;
 };
@@ -28,30 +28,78 @@ sf::Vector2i Knight::GetPosition() {
     return position;
 }
 
+void Knight::addHP(int hp) {
+    this->health += hp;
+}
+
 
 void Knight::interaction_with_the_map(Otrisovka& otrisovka) {
-
     for (int i = y / 50; i < (y+40) /50; i++)
     {
         for (int j = x / 50; j < (x+40)/50 ; j++)
         {
-            if (otrisovka.tiles[i][j]->type ==
-                Type::wall)
-            {
+            if (otrisovka.tiles[i][j]->type ==Type::wall) {
                 if (dy > 0)
                 {
-                    y = i * 50 -40;//то стопорим координату игрек персонажа. сначала получаем координату нашего квадратика на карте(стены) и затем вычитаем из высоты спрайта персонажа.
+                    y = i * 50 -40;
                 }
                 if (dy < 0) {
-                    y = i * 50 +50;//аналогично с ходьбой вверх. dy<0, значит мы идем вверх (вспоминаем координаты паинта)
+                    y = i * 50 +50;
                 }
                 if (dx > 0) {
-                    x = j * 50 - 40;//если идем вправо, то координата Х равна стена (символ 0) минус ширина персонажа
+                    x = j * 50 - 40;
                 }
                 if (dx < 0) {
-                    x = j * 50 + 50;//аналогично идем влево
+                    x = j * 50 + 50;
                 }
             }
+            if (this->GetPosition() == otrisovka.itemsList[0].GetPosition())
+            {
+                otrisovka.itemsList[0].kartinka.setTextureRect((sf::IntRect(50, 0, 50, 50)));
+            }
+            if (this->GetPosition() == otrisovka.itemsList[1].GetPosition())
+            {
+                otrisovka.itemsList[1].kartinka.setTextureRect((sf::IntRect(50, 0, 50, 50)));
+            }
+            if (this->GetPosition() == otrisovka.itemsList[2].GetPosition())
+            {
+                otrisovka.itemsList[2].kartinka.setTextureRect((sf::IntRect(50, 0, 50, 50)));
+            }
+            if (this->GetPosition().x == otrisovka.itemsList[3].GetPosition().x+10 && this->GetPosition().y == otrisovka.itemsList[3].GetPosition().y+10 &&
+                !otrisovka.itemsList[3].isPicked())
+            {
+                if (this->GetHealth() < 100){
+                    if (this->GetHealth() > 70) {
+                        this->health = max_health;
+                        otrisovka.itemsList[3].kartinka.setTextureRect((sf::IntRect(50, 50, 25, 25)));
+                        otrisovka.itemsList[3].pick();
+                    }
+                    else{
+                        this->addHP(30);
+                        otrisovka.itemsList[3].kartinka.setTextureRect((sf::IntRect(50, 50, 25, 25)));
+                        otrisovka.itemsList[3].pick();
+                    }
+                }
+
+            }
+            if (this->GetPosition().x == otrisovka.itemsList[4].GetPosition().x+10 && this->GetPosition().y == otrisovka.itemsList[4].GetPosition().y+10 &&
+                !otrisovka.itemsList[4].isPicked())
+            {
+                if (this->GetHealth() < 100){
+                    if (this->GetHealth() > 70) {
+                        this->health = max_health;
+                        otrisovka.itemsList[4].kartinka.setTextureRect((sf::IntRect(50, 50, 25, 25)));
+                        otrisovka.itemsList[4].pick();
+                    }
+                    else{
+                        this->addHP(30);
+                        otrisovka.itemsList[4].kartinka.setTextureRect((sf::IntRect(50, 50, 25, 25)));
+                        otrisovka.itemsList[4].pick();
+                    }
+                }
+
+            }
+
         }
     }
 }
@@ -83,7 +131,7 @@ void Knight::update(float time, Otrisovka& otrisovka) {
     speed = 0;//зануляем скорость, чтобы персонаж остановился.
     this->position.x = x;
     this->position.y = y;
-    //otrisovka.sprites[Type::player].setPosition(x, y); //выводим спрайт в позицию x y
+
     interaction_with_the_map(otrisovka);
 }
 
@@ -110,7 +158,7 @@ sf::Vector2i Zombie::GetPosition() {
 }
 
 Dragon::Dragon(float x, float y) {
-    this->type = Type::zombie;
+    this->type = Type::dragon;
     this->health = 30;
     this->max_health = 30;
     this->damage = 5;

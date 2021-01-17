@@ -5,6 +5,7 @@
 #include <unordered_map>
 #include <memory>
 #include "GameTile.h"
+#include "Item.h"
 
 class Otrisovka {
 private:
@@ -13,6 +14,7 @@ public:
     Otrisovka();
     std::vector<std::vector<GameTile *>> tiles;
     std::unordered_map<Type,sf::Sprite> sprites;
+    std::vector<Item> itemsList;
     const sf::Sprite& draw(Type type, sf::Vector2i position);
 };
 

@@ -2,6 +2,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/roguelike.dir/Character.cpp.obj"
   "CMakeFiles/roguelike.dir/GameTile.cpp.obj"
   "CMakeFiles/roguelike.dir/GameWorld.cpp.obj"
+  "CMakeFiles/roguelike.dir/Item.cpp.obj"
   "CMakeFiles/roguelike.dir/main.cpp.obj"
   "CMakeFiles/roguelike.dir/otrisovka.cpp.obj"
   "libroguelike.dll.a"

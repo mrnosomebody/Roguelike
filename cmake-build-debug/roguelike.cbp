@@ -104,6 +104,12 @@
 		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/GameWorld.h">
 			<Option target="roguelike"/>
 		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/Item.cpp">
+			<Option target="roguelike"/>
+		</Unit>
+		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/Item.h">
+			<Option target="roguelike"/>
+		</Unit>
 		<Unit filename="C:/Users/mrnos/CLionProjects/roguelike/Types.h">
 			<Option target="roguelike"/>
 		</Unit>

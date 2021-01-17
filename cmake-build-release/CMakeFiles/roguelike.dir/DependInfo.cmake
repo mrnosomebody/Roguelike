@@ -7,6 +7,7 @@ set(CMAKE_DEPENDS_CHECK_CXX
   "C:/Users/mrnos/CLionProjects/roguelike/Character.cpp" "C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/CMakeFiles/roguelike.dir/Character.cpp.obj"
   "C:/Users/mrnos/CLionProjects/roguelike/GameTile.cpp" "C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/CMakeFiles/roguelike.dir/GameTile.cpp.obj"
   "C:/Users/mrnos/CLionProjects/roguelike/GameWorld.cpp" "C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/CMakeFiles/roguelike.dir/GameWorld.cpp.obj"
+  "C:/Users/mrnos/CLionProjects/roguelike/Item.cpp" "C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/CMakeFiles/roguelike.dir/Item.cpp.obj"
   "C:/Users/mrnos/CLionProjects/roguelike/main.cpp" "C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/CMakeFiles/roguelike.dir/main.cpp.obj"
   "C:/Users/mrnos/CLionProjects/roguelike/otrisovka.cpp" "C:/Users/mrnos/CLionProjects/roguelike/cmake-build-release/CMakeFiles/roguelike.dir/otrisovka.cpp.obj"
   )

@@ -223,6 +223,33 @@ GameWorld.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\roguelike.dir\build.make CMakeFiles/roguelike.dir/GameWorld.cpp.s
 .PHONY : GameWorld.cpp.s
 
+Item.obj: Item.cpp.obj
+
+.PHONY : Item.obj
+
+# target to build an object file
+Item.cpp.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\roguelike.dir\build.make CMakeFiles/roguelike.dir/Item.cpp.obj
+.PHONY : Item.cpp.obj
+
+Item.i: Item.cpp.i
+
+.PHONY : Item.i
+
+# target to preprocess a source file
+Item.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\roguelike.dir\build.make CMakeFiles/roguelike.dir/Item.cpp.i
+.PHONY : Item.cpp.i
+
+Item.s: Item.cpp.s
+
+.PHONY : Item.s
+
+# target to generate assembly for a file
+Item.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\roguelike.dir\build.make CMakeFiles/roguelike.dir/Item.cpp.s
+.PHONY : Item.cpp.s
+
 main.obj: main.cpp.obj
 
 .PHONY : main.obj
@@ -295,6 +322,9 @@ help:
 	@echo ... GameWorld.obj
 	@echo ... GameWorld.i
 	@echo ... GameWorld.s
+	@echo ... Item.obj
+	@echo ... Item.i
+	@echo ... Item.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

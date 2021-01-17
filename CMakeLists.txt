@@ -6,7 +6,7 @@ project(${PROJECT_NAME})
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14 -static")
 
 set(CMAKE_CXX_STANDARD 17)
-set(SOURCES main.cpp GameTile.cpp GameTile.h GameWorld.cpp GameWorld.h Character.cpp Character.h otrisovka.cpp otrisovka.h Types.h)
+set(SOURCES main.cpp GameTile.cpp GameTile.h GameWorld.cpp GameWorld.h Character.cpp Character.h otrisovka.cpp otrisovka.h Types.h Item.cpp Item.h)
 add_executable(${PROJECT_NAME} ${SOURCES} )
 include_directories(C:\\Users\\mrnos\\CLionProjects\\roguelike\\imgs)
 set(SFML_ROOT C:/Libraries/SFML)

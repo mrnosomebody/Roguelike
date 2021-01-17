@@ -696,6 +696,16 @@ SFML/Graphics.hpp
 Types.h
 C:/Users/mrnos/CLionProjects/roguelike/Types.h
 
+C:/Users/mrnos/CLionProjects/roguelike/Item.h
+SFML/Graphics.hpp
+C:/Users/mrnos/CLionProjects/roguelike/SFML/Graphics.hpp
+Types.h
+C:/Users/mrnos/CLionProjects/roguelike/Types.h
+memory
+-
+vector
+-
+
 C:/Users/mrnos/CLionProjects/roguelike/Types.h
 
 C:/Users/mrnos/CLionProjects/roguelike/otrisovka.h
@@ -707,4 +717,6 @@ memory
 -
 GameTile.h
 C:/Users/mrnos/CLionProjects/roguelike/GameTile.h
+Item.h
+C:/Users/mrnos/CLionProjects/roguelike/Item.h
 

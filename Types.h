@@ -3,7 +3,7 @@
 #define ROGUELIKE_TYPES_H
 
 enum class Type {
-    player,zombie,dragon,wall,door,grass
+    player,zombie,dragon,wall,door,grass,aid,chest
 };
 
 #endif //ROGUELIKE_TYPES_H
