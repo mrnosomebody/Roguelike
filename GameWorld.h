@@ -17,9 +17,9 @@ private:
     sf::Event event;
     void setInitialState();
     void setUpEnemyPositions();
-    void setUpTiles(Otrisovka otrisovka);
+    void setUpTiles(Otrisovka& otrisovka);
 public:
-
+    std::vector<std::vector<GameTile *>> tiles;
     std::vector<Zombie> zombiesList;
     int gridLength;
     GameWorld();

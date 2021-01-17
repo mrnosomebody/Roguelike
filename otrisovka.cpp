@@ -9,7 +9,11 @@ Otrisovka::Otrisovka() {
         textures[textures.size() - 1]->loadFromImage(image);
         sf::Sprite sprite;
         sprite.setTexture(*textures[textures.size() - 1]);
-        sprite.setTextureRect(sf::IntRect(0, 0, 50, 50));
+        if (path =="C:/Users/mrnos/CLionProjects/roguelike/imgs/knights.png" )
+            sprite.setTextureRect(sf::IntRect(0, 0, 40, 40));
+        else {
+            sprite.setTextureRect(sf::IntRect(0, 0, 50, 50));
+        }
         return sprite;
     };
     sprites[Type::player] = loadSprite("C:/Users/mrnos/CLionProjects/roguelike/imgs/knights.png");

@@ -9,13 +9,8 @@
 class GameTile {
 public:
     Type type ;
-    bool isPassible;
-    bool isExit;
     sf::Vector2i position;
-    sf::Texture texture;
-    sf::Sprite sprite;
     GameTile(int,int,Type);
-   // bool setUpSprite(std::string);
 };
 
 

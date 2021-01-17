@@ -48,7 +48,7 @@ GameWorld::GameWorld() {
             CurrentFrame += 0.005 * time;
             if (CurrentFrame > 4)
                 CurrentFrame -= 4;
-            otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, 50, 50));
+            otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, -40, 40));
         }
 
         if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) {
@@ -57,7 +57,7 @@ GameWorld::GameWorld() {
             CurrentFrame += 0.005 * time;
             if (CurrentFrame > 4)
                 CurrentFrame -= 4;
-            otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, 50, 50));
+            otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, 40, 40));
         }
 
         if ((Keyboard::isKeyPressed(Keyboard::Up) || (Keyboard::isKeyPressed(Keyboard::W)))) {
@@ -66,7 +66,7 @@ GameWorld::GameWorld() {
             CurrentFrame += 0.005 * time;
             if (CurrentFrame > 4)
                 CurrentFrame -= 4;
-            otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, 50, 50));
+            otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, 40, 40));
         }
 
         if ((Keyboard::isKeyPressed(Keyboard::Down) ||
@@ -76,10 +76,11 @@ GameWorld::GameWorld() {
             CurrentFrame += 0.005 * time;
             if (CurrentFrame > 4)
                 CurrentFrame -= 4;
-            otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, 50, 50));
+            otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, 40, 40));
         }
 
-        player.update(time);
+        player.update(time,otrisovka);
+
 
         window->display();
     }
@@ -104,7 +105,7 @@ void GameWorld::setUpEnemyPositions() {
     }
 }
 
-void GameWorld::setUpTiles(Otrisovka otrisovka) {
+void GameWorld::setUpTiles(Otrisovka& otrisovka) {
     otrisovka.tiles.clear();
     std::vector<GameTile *> firstRow;
     firstRow.push_back(new GameTile(0, 0, Type::wall));
@@ -125,7 +126,7 @@ void GameWorld::setUpTiles(Otrisovka otrisovka) {
     secondRow.push_back(new GameTile(200, 50, Type::grass));
     secondRow.push_back(new GameTile(250, 50, Type::grass));
     secondRow.push_back(new GameTile(300, 50, Type::grass));
-    secondRow.push_back(new GameTile(350, 50, Type::grass));
+    secondRow.push_back(new GameTile(350, 50, Type::wall));
     otrisovka.tiles.push_back(secondRow);
 
     std::vector<GameTile *> thirdRow;

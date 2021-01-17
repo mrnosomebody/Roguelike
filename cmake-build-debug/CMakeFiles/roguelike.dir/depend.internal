@@ -79,7 +79,6 @@ CMakeFiles/roguelike.dir/Character.cpp.obj
  C:/Users/mrnos/CLionProjects/roguelike/Character.cpp
  C:/Users/mrnos/CLionProjects/roguelike/Character.h
  C:/Users/mrnos/CLionProjects/roguelike/GameTile.h
- C:/Users/mrnos/CLionProjects/roguelike/GameWorld.h
  C:/Users/mrnos/CLionProjects/roguelike/Types.h
  C:/Users/mrnos/CLionProjects/roguelike/otrisovka.h
 CMakeFiles/roguelike.dir/GameTile.cpp.obj
@@ -397,9 +396,7 @@ CMakeFiles/roguelike.dir/otrisovka.cpp.obj
  C:/Libraries/SFML/include/SFML/Window/Window.hpp
  C:/Libraries/SFML/include/SFML/Window/WindowHandle.hpp
  C:/Libraries/SFML/include/SFML/Window/WindowStyle.hpp
- C:/Users/mrnos/CLionProjects/roguelike/Character.h
  C:/Users/mrnos/CLionProjects/roguelike/GameTile.h
- C:/Users/mrnos/CLionProjects/roguelike/GameWorld.h
  C:/Users/mrnos/CLionProjects/roguelike/Types.h
  C:/Users/mrnos/CLionProjects/roguelike/otrisovka.cpp
  C:/Users/mrnos/CLionProjects/roguelike/otrisovka.h

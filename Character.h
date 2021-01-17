@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Types.h"
-#include "GameWorld.h"
 #include "otrisovka.h"
 
 class Character {
@@ -28,8 +27,8 @@ public:
     int GetHealth() override;
     int GetMaxHealth() override;
     sf::Vector2i GetPosition() override;
-    void update(float);
-    void interaction_with_the_map(Otrisovka otrisovka);
+    void update(float,Otrisovka& otrisovka);
+    void interaction_with_the_map(Otrisovka& otrisovka);
 };
 
 class Zombie : public Character {
