@@ -12,9 +12,7 @@ private:
     std::vector<std::shared_ptr <sf::Texture>> textures;
 public:
     Otrisovka();
-    std::vector<std::vector<GameTile *>> tiles;
     std::unordered_map<Type,sf::Sprite> sprites;
-    std::vector<Item> itemsList;
     const sf::Sprite& draw(Type type, sf::Vector2i position);
 };
 

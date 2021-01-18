@@ -9,13 +9,11 @@ Otrisovka::Otrisovka() {
         textures[textures.size() - 1]->loadFromImage(image);
         sf::Sprite sprite;
         sprite.setTexture(*textures[textures.size() - 1]);
-        if (path =="C:/Users/mrnos/CLionProjects/roguelike/imgs/knights.png"
-        || path == "C:/Users/mrnos/CLionProjects/roguelike/imgs/zombie.png"
-        || path == "C:/Users/mrnos/CLionProjects/roguelike/imgs/enemy.png")
-        {
+        if (path == "C:/Users/mrnos/CLionProjects/roguelike/imgs/knights.png"
+            || path == "C:/Users/mrnos/CLionProjects/roguelike/imgs/zombie.png"
+            || path == "C:/Users/mrnos/CLionProjects/roguelike/imgs/enemy.png") {
             sprite.setTextureRect(sf::IntRect(0, 0, 40, 40));
-        }
-        else {
+        } else {
             sprite.setTextureRect(sf::IntRect(0, 0, 50, 50));
         }
         return sprite;
@@ -26,10 +24,18 @@ Otrisovka::Otrisovka() {
     sprites[Type::door] = loadSprite("C:/Users/mrnos/CLionProjects/roguelike/imgs/door.png");
     sprites[Type::grass] = loadSprite("C:/Users/mrnos/CLionProjects/roguelike/imgs/floor.png");
     sprites[Type::zombie] = loadSprite("C:/Users/mrnos/CLionProjects/roguelike/imgs/zombie.png");
+    sprites[Type::chest] = loadSprite("C:/Users/mrnos/CLionProjects/roguelike/imgs/chest.png");
+    sprites[Type::opened_chest] = loadSprite("C:/Users/mrnos/CLionProjects/roguelike/imgs/opened_chest.png");
+    sprites[Type::aid] = loadSprite("C:/Users/mrnos/CLionProjects/roguelike/imgs/heart.png");
+    sprites[Type::took_aid] = loadSprite("C:/Users/mrnos/CLionProjects/roguelike/imgs/took_aid.png");
 }
 
 const sf::Sprite &Otrisovka::draw(Type type, sf::Vector2i position) {
     auto &cell = sprites[type];
-    cell.setPosition(position.x, position.y);
+    if (type == Type::aid) {
+        cell.setPosition(position.x + 14, position.y + 15);
+    } else {
+        cell.setPosition(position.x, position.y);
+    }
     return cell;
 }

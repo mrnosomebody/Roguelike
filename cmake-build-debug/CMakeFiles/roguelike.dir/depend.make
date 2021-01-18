@@ -77,10 +77,7 @@ CMakeFiles/roguelike.dir/Character.cpp.obj: C:/Libraries/SFML/include/SFML/Windo
 CMakeFiles/roguelike.dir/Character.cpp.obj: C:/Libraries/SFML/include/SFML/Window/WindowStyle.hpp
 CMakeFiles/roguelike.dir/Character.cpp.obj: ../Character.cpp
 CMakeFiles/roguelike.dir/Character.cpp.obj: ../Character.h
-CMakeFiles/roguelike.dir/Character.cpp.obj: ../GameTile.h
-CMakeFiles/roguelike.dir/Character.cpp.obj: ../Item.h
 CMakeFiles/roguelike.dir/Character.cpp.obj: ../Types.h
-CMakeFiles/roguelike.dir/Character.cpp.obj: ../otrisovka.h
 
 CMakeFiles/roguelike.dir/GameTile.cpp.obj: C:/Libraries/SFML/include/SFML/Config.hpp
 CMakeFiles/roguelike.dir/GameTile.cpp.obj: C:/Libraries/SFML/include/SFML/Graphics.hpp

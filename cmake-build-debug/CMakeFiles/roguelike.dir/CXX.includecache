@@ -681,8 +681,6 @@ SFML/Graphics.hpp
 -
 Types.h
 C:/Users/mrnos/CLionProjects/roguelike/Types.h
-otrisovka.h
-C:/Users/mrnos/CLionProjects/roguelike/otrisovka.h
 
 C:/Users/mrnos/CLionProjects/roguelike/GameTile.h
 SFML/Graphics.hpp
@@ -713,12 +711,18 @@ SFML/Graphics.hpp
 C:/Users/mrnos/CLionProjects/roguelike/SFML/Graphics.hpp
 Types.h
 C:/Users/mrnos/CLionProjects/roguelike/Types.h
-memory
--
 vector
 -
 
 C:/Users/mrnos/CLionProjects/roguelike/Types.h
+
+C:/Users/mrnos/CLionProjects/roguelike/main.cpp
+SFML/Graphics.hpp
+-
+iostream
+-
+GameWorld.h
+C:/Users/mrnos/CLionProjects/roguelike/GameWorld.h
 
 C:/Users/mrnos/CLionProjects/roguelike/otrisovka.h
 SFML/Graphics.hpp

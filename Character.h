@@ -3,7 +3,6 @@
 
 #include <SFML/Graphics.hpp>
 #include "Types.h"
-#include "otrisovka.h"
 
 class Character {
 protected:
@@ -12,15 +11,13 @@ protected:
     int damage;
     sf::Vector2i position;
 public:
-    float x, y, dx, dy, speed = 0;
+    float x, y, width, height, dx, dy, speed = 0;
     int dir = 0;
     Type type;
     virtual int GetHealth() = 0;
     virtual int GetMaxHealth() = 0;
     virtual sf::Vector2i GetPosition() = 0;
-    virtual void update(float,Otrisovka& )=0;
-    virtual void interaction_with_the_map(Otrisovka& )=0;
-    virtual void addHP(int )=0;
+    virtual void SetPosition(float,float) = 0;
     bool life = true;
 };
 
@@ -31,9 +28,9 @@ public:
     int GetHealth() override;
     int GetMaxHealth() override;
     sf::Vector2i GetPosition() override;
-    void update(float,Otrisovka&) override;
-    void interaction_with_the_map(Otrisovka&) override;
-    void addHP(int) override;
+    void SetPosition(float,float) override;
+    void set_100_hp();
+    void addHP(int);
 };
 
 class Zombie : public Character {
@@ -42,9 +39,7 @@ public:
     int GetHealth() override;
     int GetMaxHealth() override;
     sf::Vector2i GetPosition() override;
-    void update(float,Otrisovka&) override;
-    void interaction_with_the_map(Otrisovka&) override;
-    void addHP(int) override;
+    void SetPosition(float,float) override;
 };
 
 class Dragon : public Character {
@@ -53,8 +48,6 @@ public:
     int GetHealth() override;
     int GetMaxHealth() override;
     sf::Vector2i GetPosition() override;
-    void update(float,Otrisovka&) override;
-    void interaction_with_the_map(Otrisovka&) override;
-    void addHP(int) override;
+    void SetPosition(float,float) override;
 };
 #endif //ROGUELIKE_CHARACTER_H
