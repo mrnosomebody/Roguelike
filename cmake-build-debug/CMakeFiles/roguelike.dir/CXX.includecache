@@ -676,12 +676,6 @@ SFML/Config.hpp
 
 C:/Libraries/SFML/include/SFML/Window/WindowStyle.hpp
 
-C:/Users/mrnos/CLionProjects/roguelike/Character.cpp
-iostream
--
-Character.h
-C:/Users/mrnos/CLionProjects/roguelike/Character.h
-
 C:/Users/mrnos/CLionProjects/roguelike/Character.h
 SFML/Graphics.hpp
 -
@@ -695,6 +689,24 @@ SFML/Graphics.hpp
 -
 Types.h
 C:/Users/mrnos/CLionProjects/roguelike/Types.h
+
+C:/Users/mrnos/CLionProjects/roguelike/GameWorld.cpp
+iostream
+-
+GameWorld.h
+C:/Users/mrnos/CLionProjects/roguelike/GameWorld.h
+
+C:/Users/mrnos/CLionProjects/roguelike/GameWorld.h
+SFML/Graphics.hpp
+-
+GameTile.h
+C:/Users/mrnos/CLionProjects/roguelike/GameTile.h
+vector
+-
+Character.h
+C:/Users/mrnos/CLionProjects/roguelike/Character.h
+otrisovka.h
+C:/Users/mrnos/CLionProjects/roguelike/otrisovka.h
 
 C:/Users/mrnos/CLionProjects/roguelike/Item.h
 SFML/Graphics.hpp

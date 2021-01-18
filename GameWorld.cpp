@@ -43,7 +43,7 @@ GameWorld::GameWorld() {
     while (window->isOpen()) {
         float time = clock.getElapsedTime().asMicroseconds(); //дать прошедшее время в микросекундах
         clock.restart(); //перезагружает время
-        time /= 600; //скорость игры
+        time /= 800; //скорость игры
         while (window->pollEvent(this->event)) {
             if (event.type == sf::Event::Closed)
                 window->close();
@@ -56,29 +56,30 @@ GameWorld::GameWorld() {
             }
         }
         ///Отрисовка бомжей
-        for (auto i : zombiesList) {
+        for (auto& i : zombiesList) {
             window->draw(otrisovka.draw(i.type, i.GetPosition()));
         }
 
         ///Отрисовка чиновников
-        for (auto i : dragonsList) {
+        for (auto& i : dragonsList) {
             window->draw(otrisovka.draw(i.type, i.GetPosition()));
         }
 
         ///Отрисовка приколюх
-        for (auto i : otrisovka.itemsList) {
+        for (auto& i : otrisovka.itemsList) {
             window->draw(i.kartinka);
         }
 
         ///Отрисовка главного фраера
         window->draw(otrisovka.draw(player.type, player.GetPosition()));
-        //std::cout<<player.GetPosition().x<<"\t"<<player.GetPosition().y<<std::endl;
-//std::cout<<otrisovka.tiles[2][2]->position.x<<otrisovka.tiles[2][2]->position.y<<"\n";
-//        HeartFrame += 0.008 * time;
-//        if (HeartFrame > 13)
-//            HeartFrame -= 13;
-//        otrisovka.itemsList[3].kartinka.setTextureRect(IntRect(22 * int(HeartFrame), 0, 25, 25));
-//        otrisovka.itemsList[4].kartinka.setTextureRect(IntRect(22 * int(HeartFrame), 0, 25, 25));
+
+        HeartFrame += 0.008 * time;
+        if (HeartFrame > 13)
+            HeartFrame -= 13;
+        if (!otrisovka.itemsList[3].isPicked())
+            otrisovka.itemsList[3].kartinka.setTextureRect(IntRect(22 * int(HeartFrame), 0, 25, 25));
+        if (!otrisovka.itemsList[4].isPicked())
+            otrisovka.itemsList[4].kartinka.setTextureRect(IntRect(22 * int(HeartFrame), 0, 25, 25));
 
         ///Управление персонажем с анимацией
         if ((Keyboard::isKeyPressed(Keyboard::Left) || (Keyboard::isKeyPressed(Keyboard::A)))) {
@@ -91,7 +92,6 @@ GameWorld::GameWorld() {
         }
 
         if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) {
-            std::cout<<player.GetHealth()<<"\n";
             player.dir = 0;
             player.speed = 0.1;
             CurrentFrame += 0.005 * time;
@@ -120,7 +120,6 @@ GameWorld::GameWorld() {
         }
 
         if ((Keyboard::isKeyPressed(Keyboard::Space))) {
-
             CurrentFrame += 0.005 * time;
             if (CurrentFrame > 6)
                 CurrentFrame -= 3;
@@ -130,10 +129,13 @@ GameWorld::GameWorld() {
                 otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, 40, 40));
             }
         }
-
         player.update(time,otrisovka);
-
-
+        for (auto& i: zombiesList) {
+            i.update(time,otrisovka);
+        }
+        for (auto& i: dragonsList) {
+            i.update(time,otrisovka);
+        }
         window->display();
     }
 }

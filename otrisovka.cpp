@@ -31,6 +31,5 @@ Otrisovka::Otrisovka() {
 const sf::Sprite &Otrisovka::draw(Type type, sf::Vector2i position) {
     auto &cell = sprites[type];
     cell.setPosition(position.x, position.y);
-
     return cell;
 }
