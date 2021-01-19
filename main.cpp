@@ -4,8 +4,7 @@
 
 
 int main() {
-      GameWorld fal;
-
-
+    GameWorld fal;
+    fal.run();
     return 0;
 }

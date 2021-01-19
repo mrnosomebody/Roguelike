@@ -17,3 +17,10 @@ sf::Vector2i Item::GetPosition() {
     return position;
 }
 
+Type Item::GetType() {
+    return type;
+}
+
+void Item::SetUpType(Type type) {
+    this->type = type;
+}

@@ -11,21 +11,28 @@
 
 class GameWorld {
 private:
+    Otrisovka otrisovka;
     Knight player;
-    sf::RenderWindow* window;
+    std::unique_ptr<sf::RenderWindow> window;
     sf::Event event;
-    void setUpTiles(Otrisovka& otrisovka);
-public:
-    void update(float,Knight&, Otrisovka& );
-    void update(float,Character&, Otrisovka& );
-    void interaction_with_the_map(Knight&, Otrisovka& );
-    void interaction_with_the_map(Character&, Otrisovka& );
+    sf::Clock clock;
+    int gridLength;
+    float CurrentFrame = 0;//хранит текущий кадр
+    float HeartFrame =0;
     std::vector<std::vector<std::shared_ptr<GameTile>>> tiles;
     std::vector<std::unique_ptr<Character>> enemiesList;
+    std::vector<std::unique_ptr<Bullet>> bulletsList;
     std::vector<Item> itemsList;
-    int gridLength;
+    void setUpTiles();
+    void update(float,Knight&);
+    void update(float,Character&);
+    void update(float,Bullet&, int);
+    void interaction_with_the_map(Bullet&);
+    void interaction_with_the_map(Knight&);
+    void interaction_with_the_map(Character&);
+public:
     GameWorld();
-    ~GameWorld();
+    void run();
 };
 
 #endif

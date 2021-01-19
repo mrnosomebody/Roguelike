@@ -1,13 +1,10 @@
 #include <iostream>
 #include "GameWorld.h"
 
-
-
 using namespace sf;
 
 GameWorld::GameWorld() {
     gridLength = 16;
-    Otrisovka otrisovka;
     player = Knight(1,14);
     enemiesList.push_back(std::make_unique<Zombie>(11,2));
     enemiesList.push_back(std::make_unique<Zombie>(11,3));
@@ -21,12 +18,11 @@ GameWorld::GameWorld() {
     itemsList.emplace_back( Type::chest,14,3,"C:/Users/mrnos/CLionProjects/roguelike/imgs/chest.png" );
     itemsList.emplace_back( Type::aid,2,2 ,"C:/Users/mrnos/CLionProjects/roguelike/imgs/heart.png");
     itemsList.emplace_back( Type::aid,3,12,"C:/Users/mrnos/CLionProjects/roguelike/imgs/heart.png" );
-    setUpTiles(otrisovka);
+    this->window =std::make_unique<sf::RenderWindow>(sf::VideoMode(800, 800), "Roguelike", sf::Style::Titlebar | sf::Style::Close);
+    setUpTiles();
+}
 
-    sf::Clock clock;
-    float CurrentFrame = 0;//хранит текущий кадр
-    float HeartFrame =0;
-    this->window = new sf::RenderWindow(sf::VideoMode(800, 800), "Roguelike", sf::Style::Titlebar | sf::Style::Close);
+void GameWorld::run() {
     while (window->isOpen()) {
         float time = clock.getElapsedTime().asMicroseconds(); //дать прошедшее время в микросекундах
         clock.restart(); //перезагружает время
@@ -34,17 +30,32 @@ GameWorld::GameWorld() {
         while (window->pollEvent(this->event)) {
             if (event.type == sf::Event::Closed)
                 window->close();
+            if (event.type == sf::Event::KeyReleased){
+                if (event.key.code == sf::Keyboard::Space)
+                    bulletsList.push_back(std::make_unique<Bullet>(player.x, player.y));
+            }
+            //std::cout<<enemiesList[2]->GetPosition().y<<"\n";
         }
         window->clear();
-        ///Отрисовка карты
+    ///Отрисовка карты
         for (int i = 0; i < gridLength; ++i) {
             for (int j = 0; j < gridLength; ++j) {
-                window->draw(otrisovka.draw(tiles[i][j]->type, tiles[i][j]->position));
+//                if ((tiles[i][j]->position.x<player.GetPosition().x+150 && tiles[i][j]->position.x>player.GetPosition().x-150) ///Туман войны
+//                    && (tiles[i][j]->position.y<player.GetPosition().y+150 && tiles[i][j]->position.y>player.GetPosition().y-150))
+                    window->draw(otrisovka.draw(tiles[i][j]->type, tiles[i][j]->position));
+//                else {
+//                    window->draw(otrisovka.draw(Type::fog, tiles[i][j]->position));
+//                }
             }
+        }
+        for (int i=0;i<enemiesList.size();++i){
+            if (!enemiesList[i]->life)
+                enemiesList.erase(enemiesList.begin()+i);
         }
         ///Отрисовка бомжей
         for (auto& i : enemiesList) {
-            window->draw(otrisovka.draw(i->type, i->GetPosition()));
+            if (i->life)
+                window->draw(otrisovka.draw(i->type, i->GetPosition()));
         }
 
         ///Отрисовка приколюх
@@ -54,6 +65,16 @@ GameWorld::GameWorld() {
 
         ///Отрисовка главного фраера
         window->draw(otrisovka.draw(player.type, player.GetPosition()));
+
+        for (int i=0;i<bulletsList.size();++i){
+            if (!bulletsList[i]->life)
+                bulletsList.erase(bulletsList.begin()+i);
+        }
+        for (auto& i: bulletsList){
+            window->draw(otrisovka.draw(i->type,i->GetPosition()));
+        }
+
+
 
         HeartFrame += 0.008 * time;
         if (HeartFrame > 13)
@@ -71,6 +92,7 @@ GameWorld::GameWorld() {
             if (CurrentFrame > 4)
                 CurrentFrame -= 4;
             otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, -40, 40));
+
         }
 
         if ((Keyboard::isKeyPressed(Keyboard::Right) || (Keyboard::isKeyPressed(Keyboard::D)))) {
@@ -100,35 +122,23 @@ GameWorld::GameWorld() {
                 CurrentFrame -= 4;
             otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, 40, 40));
         }
-
-        if ((Keyboard::isKeyPressed(Keyboard::Space))) {
-            CurrentFrame += 0.005 * time;
-            if (CurrentFrame > 6)
-                CurrentFrame -= 3;
-            if(player.dir == 1)
-                otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, -40, 40));
-            else{
-                otrisovka.sprites[Type::player].setTextureRect(IntRect(50 * int(CurrentFrame), 0, 40, 40));
-            }
+        update(time,player);
+        for (auto & i : enemiesList){
+            update(time,*i);
         }
-        update(time,player,otrisovka);
-        for (int i=0 ; i< enemiesList.size(); ++i){
-            update(time,*enemiesList[i],otrisovka);
+        for (auto & i : bulletsList){
+            update(time,*i, player.dir);
         }
         window->display();
     }
 }
 
-GameWorld::~GameWorld() {
-    delete this->window;
-}
-
-void GameWorld::interaction_with_the_map(Knight& player, Otrisovka& otrisovka) {
+void GameWorld::interaction_with_the_map(Knight& player) {
     for (int i = player.y / 50; i < (player.y+player.height) /50; i++)
     {
-        for (int j = player.x / 50; j < (player.x+40)/50 ; j++)
+        for (int j = player.x / 50; j < (player.x+player.width)/50 ; j++)
         {
-            if (tiles[i][j]->type ==Type::wall) {
+            if (tiles[i][j]->type == Type::wall) {
                 if (player.dy > 0)
                 {
                     player.y = i * 50 -player.height;
@@ -145,15 +155,15 @@ void GameWorld::interaction_with_the_map(Knight& player, Otrisovka& otrisovka) {
             }
             if (player.GetPosition().x == itemsList[0].GetPosition().x && player.GetPosition().y == itemsList[0].GetPosition().y+10)
             {
-                itemsList[0].type = Type::opened_chest;
+                itemsList[0].SetUpType(Type::opened_chest);
             }
             if (player.GetPosition().x == itemsList[1].GetPosition().x && player.GetPosition().y == itemsList[1].GetPosition().y+10)
             {
-                itemsList[1].type = Type::opened_chest;
+                itemsList[1].SetUpType(Type::opened_chest);
             }
             if (player.GetPosition() == itemsList[2].GetPosition())
             {
-                itemsList[2].type = Type::opened_chest;
+                itemsList[2].SetUpType(Type::opened_chest);
             }
             if (player.GetPosition().x == itemsList[3].GetPosition().x+10 && player.GetPosition().y == itemsList[3].GetPosition().y+10 &&
                 !itemsList[3].isPicked())
@@ -161,12 +171,12 @@ void GameWorld::interaction_with_the_map(Knight& player, Otrisovka& otrisovka) {
                 if (player.GetHealth() < 100){
                     if (player.GetHealth() > 70) {
                         player.set_100_hp();
-                        itemsList[3].type = Type::took_aid;
+                        itemsList[3].SetUpType(Type::took_aid);
                         itemsList[3].pick();
                     }
                     else{
                         player.addHP(30);
-                        itemsList[3].type = Type::took_aid;
+                        itemsList[3].SetUpType(Type::took_aid);
                         itemsList[3].pick();
                     }
                 }
@@ -177,23 +187,32 @@ void GameWorld::interaction_with_the_map(Knight& player, Otrisovka& otrisovka) {
                 if (player.GetHealth() < 100){
                     if (player.GetHealth() > 70) {
                         player.set_100_hp();
-                        itemsList[4].type = Type::took_aid;
+                        itemsList[4].SetUpType(Type::took_aid);
                         itemsList[4].pick();
                     }
                     else{
                         player.addHP(30);
-                        itemsList[4].type = Type::took_aid;
+                        itemsList[4].SetUpType(Type::took_aid);
                         itemsList[4].pick();
                     }
                 }
-
             }
-
+        }
+    }
+    for (auto &i : enemiesList){
+        if (player.GetPosition() == i->GetPosition()){
+            i->reduceHp(player.damage);
+            player.reduceHp(i->damage);
+            if (i->GetHealth()<=0)
+                i->life = false;
+            if (player.GetHealth() <= 0)
+                player.life=false;
+            std::cout<<player.GetHealth()<<"\n";
         }
     }
 }
 
-void GameWorld::update(float time, Knight& player, Otrisovka& otrisovka) {
+void GameWorld::update(float time, Knight& player) {
     switch (player.dir)//реализуем поведение в зависимости от направления. (каждая цифра соответствует направлению)
     {
         case 0:
@@ -217,10 +236,10 @@ void GameWorld::update(float time, Knight& player, Otrisovka& otrisovka) {
     player.y += player.dy * time;
     player.speed = 0;//зануляем скорость, чтобы персонаж остановился.
     player.SetPosition(player.x,player.y);
-    interaction_with_the_map(player,otrisovka);
+    interaction_with_the_map(player);
 }
 
-void GameWorld::interaction_with_the_map(Character& enemy, Otrisovka& otrisovka) {
+void GameWorld::interaction_with_the_map(Character& enemy) {
     for (int i = enemy.y / 50; i < (enemy.y+enemy.height) /50; i++) {
         for (int j = enemy.x / 50; j < (enemy.x + enemy.width) / 50; j++) {
             if (tiles[i][j]->type == Type::wall) {
@@ -239,16 +258,75 @@ void GameWorld::interaction_with_the_map(Character& enemy, Otrisovka& otrisovka)
     }
 }
 
-void GameWorld::update(float time, Character& enemy, Otrisovka& otrisovka) {
+void GameWorld::update(float time, Character& enemy) {
     enemy.x += enemy.dx * time;
     enemy.SetPosition(enemy.x,enemy.y);
-    interaction_with_the_map(enemy,otrisovka);
+    interaction_with_the_map(enemy);
     if (enemy.GetHealth() <= 0) {
         enemy.life = false;
     }
 }
 
-void GameWorld::setUpTiles(Otrisovka& otrisovka) {
+void GameWorld::interaction_with_the_map(Bullet& bullet) {
+    for (int i = bullet.y / 50; i < (bullet.y+bullet.height) /50; i++) {
+        for (int j = bullet.x / 50; j < (bullet.x + bullet.width) / 50; j++) {
+            if (tiles[i][j]->type == Type::wall) {
+                if (bullet.dy > 0)
+                {
+                    bullet.y = i * 50 -bullet.height;
+                }
+                if (bullet.dy < 0) {
+                    bullet.y = i * 50 +50;
+                }
+                if (bullet.dx > 0) {
+                    bullet.x = j * 50 - bullet.width;
+                }
+                if (bullet.dx < 0) {
+                    bullet.x = j * 50 + 50;
+                }
+                bullet.life=false;
+            }
+        }
+    }
+    for (auto &i : enemiesList){
+        if (bullet.GetPosition() == i->GetPosition()){
+            i->reduceHp(bullet.damage);
+            if (i->GetHealth()<=0)
+                i->life = false;
+            bullet.life=false;
+        }
+    }
+}
+
+void GameWorld::update(float time, Bullet &bullet, int dir) {
+        switch (dir)//реализуем поведение в зависимости от направления. (каждая цифра соответствует направлению)
+        {
+            case 0:
+                bullet.dx = bullet.speed;
+                bullet.dy = 0;
+                break;//по иксу задаем положительную скорость, по игреку зануляем. получаем, что персонаж идет только вправо
+            case 1:
+                bullet.dx = -bullet.speed;
+                bullet.dy = 0;
+                break;//по иксу задаем отрицательную скорость, по игреку зануляем. получается, что персонаж идет только влево
+            case 2:
+                bullet.dx = 0;
+                bullet.dy = bullet.speed;
+                break;//по иксу задаем нулевое значение, по игреку положительное. получается, что персонаж идет только вниз
+            case 3:
+                bullet.dx = 0;
+                bullet.dy = -bullet.speed;
+                break;//по иксу задаем нулевое значение, по игреку отрицательное. получается, что персонаж идет только вверх
+        }
+        //std::cout<<bullet.GetPosition().x<<"\t"<<bullet.GetPosition().y<<"\n";
+        bullet.x += bullet.dx * time;
+        bullet.y += bullet.dy * time;
+        bullet.SetPosition(bullet.x,bullet.y);
+        interaction_with_the_map(bullet);
+
+}
+
+void GameWorld::setUpTiles() {
     tiles.clear();
     std::vector<std::shared_ptr<GameTile>> firstRow;
     firstRow.push_back(std::make_shared<GameTile>(0, 0, Type::wall));

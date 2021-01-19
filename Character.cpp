@@ -9,6 +9,7 @@ Knight::Knight() {
     this->damage = 30;
     this->width= 40;
     this->height= 40;
+    this->dir = 3;
 };
 
 Knight::Knight(float x, float y) : Knight() {
@@ -17,6 +18,16 @@ Knight::Knight(float x, float y) : Knight() {
     this->position.x = x * 50;
     this->position.y = y * 50;
 }
+
+//bool Knight::collide(Wall*) {
+//
+//    return false;
+//}
+//
+//bool Knight::collide(Character* hero) {
+//    return hero->collide(this);
+//}
+
 
 int Knight::GetHealth() {
     return health;
@@ -41,6 +52,10 @@ void Knight::set_100_hp() {
 void Knight::SetPosition(float x, float y) {
     this->position.x=x;
     this->position.y=y;
+}
+
+void Knight::reduceHp(int hp) {
+    this->health-=hp;
 }
 
 Zombie::Zombie(float x, float y) {
@@ -75,6 +90,10 @@ void Zombie::SetPosition(float x, float y) {
     this->position.y=y;
 }
 
+void Zombie::reduceHp(int hp) {
+    this->health-=hp;
+}
+
 Dragon::Dragon(float x, float y) {
     this->type = Type::dragon;
     this->width= 40;
@@ -105,4 +124,25 @@ sf::Vector2i Dragon::GetPosition() {
 void Dragon::SetPosition(float x, float y) {
     this->position.x=x;
     this->position.y=y;
+}
+
+void Dragon::reduceHp(int hp) {
+    this->health-=hp;
+}
+
+void Bullet::SetPosition(float x, float y) {
+    this->position.x=x;
+    this->position.y=y;
+}
+
+Bullet::Bullet(float x, float y) {
+    this->type = Type::bullet;
+    this->x = x;
+    this->y = y;
+    this->position.x=x;
+    this->position.y=y;
+}
+
+sf::Vector2i Bullet::GetPosition() {
+    return position;
 }
