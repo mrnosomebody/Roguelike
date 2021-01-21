@@ -39,6 +39,7 @@ public:
     sf::Vector2i GetPosition() override;
     void SetPosition(float,float) override;
     void set_100_hp();
+    void set_0_hp();
     void addHP(int);
     void reduceHp(int) override;
 //    bool collide(std::unique_ptr<Character>) override;

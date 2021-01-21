@@ -1,5 +1,6 @@
 #include <iostream>
 #include "GameWorld.h"
+#include "windows.h"
 
 using namespace sf;
 
@@ -18,7 +19,8 @@ GameWorld::GameWorld() {
     itemsList.emplace_back( Type::chest,14,3,"C:/Users/mrnos/CLionProjects/roguelike/imgs/chest.png" );
     itemsList.emplace_back( Type::aid,2,2 ,"C:/Users/mrnos/CLionProjects/roguelike/imgs/heart.png");
     itemsList.emplace_back( Type::aid,3,12,"C:/Users/mrnos/CLionProjects/roguelike/imgs/heart.png" );
-    this->window =std::make_unique<sf::RenderWindow>(sf::VideoMode(800, 800), "Roguelike", sf::Style::Titlebar | sf::Style::Close);
+    this->window =std::make_unique<sf::RenderWindow>(sf::VideoMode(800, 850), "Roguelike", sf::Style::Titlebar | sf::Style::Close);
+
     setUpTiles();
 }
 
@@ -34,23 +36,33 @@ void GameWorld::run() {
                 if (event.key.code == sf::Keyboard::Space)
                     bulletsList.push_back(std::make_unique<Bullet>(player.x, player.y));
             }
-            //std::cout<<enemiesList[2]->GetPosition().y<<"\n";
         }
         window->clear();
     ///Отрисовка карты
         for (int i = 0; i < gridLength; ++i) {
             for (int j = 0; j < gridLength; ++j) {
-//                if ((tiles[i][j]->position.x<player.GetPosition().x+150 && tiles[i][j]->position.x>player.GetPosition().x-150) ///Туман войны
-//                    && (tiles[i][j]->position.y<player.GetPosition().y+150 && tiles[i][j]->position.y>player.GetPosition().y-150))
+                if ((tiles[i][j]->position.x<player.GetPosition().x+150 && tiles[i][j]->position.x>player.GetPosition().x-150) ///Туман войны
+                    && (tiles[i][j]->position.y<player.GetPosition().y+150 && tiles[i][j]->position.y>player.GetPosition().y-150))
                     window->draw(otrisovka.draw(tiles[i][j]->type, tiles[i][j]->position));
-//                else {
-//                    window->draw(otrisovka.draw(Type::fog, tiles[i][j]->position));
-//                }
+                else {
+                    window->draw(otrisovka.draw(Type::fog, tiles[i][j]->position));
+                }
             }
         }
+        window->draw(otrisovka.hp_bar_back);
+        window->draw(otrisovka.hp_bar_inside);
+        window->draw(otrisovka.hp_bar_text);
+        otrisovka.update_hp_bar(player.GetHealth());
+
         for (int i=0;i<enemiesList.size();++i){
             if (!enemiesList[i]->life)
                 enemiesList.erase(enemiesList.begin()+i);
+        }
+
+        if (player.GetHealth()==0) {
+            window->draw(otrisovka.gameover_text);
+            if (Keyboard::isKeyPressed(Keyboard::Z))
+                window->close();
         }
         ///Отрисовка бомжей
         for (auto& i : enemiesList) {
@@ -138,6 +150,11 @@ void GameWorld::interaction_with_the_map(Knight& player) {
     {
         for (int j = player.x / 50; j < (player.x+player.width)/50 ; j++)
         {
+            if (tiles[i][j]->type == Type::door){
+                window->draw(otrisovka.win_text);
+                if (Keyboard::isKeyPressed(Keyboard::Z))
+                    window->close();
+            }
             if (tiles[i][j]->type == Type::wall) {
                 if (player.dy > 0)
                 {
@@ -206,8 +223,8 @@ void GameWorld::interaction_with_the_map(Knight& player) {
             if (i->GetHealth()<=0)
                 i->life = false;
             if (player.GetHealth() <= 0)
+                player.set_0_hp();
                 player.life=false;
-            std::cout<<player.GetHealth()<<"\n";
         }
     }
 }

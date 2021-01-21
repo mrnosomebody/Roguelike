@@ -35,6 +35,8 @@ Otrisovka::Otrisovka() {
     sprites[Type::took_aid] = loadSprite("C:/Users/mrnos/CLionProjects/roguelike/imgs/took_aid.png");
     sprites[Type::fog] = loadSprite("C:/Users/mrnos/CLionProjects/roguelike/imgs/wall.png");
     sprites[Type::bullet] = loadSprite("C:/Users/mrnos/CLionProjects/roguelike/imgs/bullet.png");
+    init_hp_bar();
+    init_font();
 }
 
 const sf::Sprite &Otrisovka::draw(Type type, sf::Vector2i position) {
@@ -46,3 +48,36 @@ const sf::Sprite &Otrisovka::draw(Type type, sf::Vector2i position) {
     }
     return cell;
 }
+
+void Otrisovka::init_font() {
+    this->font.loadFromFile("C:/Users/mrnos/CLionProjects/roguelike/imgs/Anagram.ttf");
+}
+void Otrisovka::init_hp_bar() {
+    this->hp_bar_back.setSize(sf::Vector2f(200.f,30.f));
+    this->hp_bar_inside.setSize(sf::Vector2f(200.f,30.f));
+    this->hp_bar_back.setFillColor(sf::Color(50,50,50,200));
+    this->hp_bar_inside.setFillColor(sf::Color(250,20,20,200));
+    this->hp_bar_back.setPosition(20.f,810.f);
+    this->hp_bar_inside.setPosition(this->hp_bar_back.getPosition());
+    this->hp_bar_text.setFont(this->font);
+    this->hp_bar_text.setPosition(this->hp_bar_inside.getPosition());
+    this->gameover_text.setFont(this->font);
+    this->win_text.setFont(this->font);
+    this->gameover_text.setString("Game Over");
+    this->win_text.setString("You win");
+    this->gameover_text.setFillColor(sf::Color::Red);
+    this->win_text.setFillColor(sf::Color::Green);
+    this->gameover_text.setPosition(350.f,350.f);
+    this->win_text.setPosition(350.f,350.f);
+}
+
+void Otrisovka::update_hp_bar(int hp) {
+    this->hp_bar_inside.setSize(sf::Vector2f(200/100*hp,30.f));
+    this->text_string =std::to_string(hp) ;
+    this->hp_bar_text.setString(text_string);
+}
+
+
+
+
+

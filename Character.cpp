@@ -4,7 +4,7 @@
 
 Knight::Knight() {
     this->type = Type::player;
-    this->health = 60;
+    this->health = 100;
     this->max_health = 100;
     this->damage = 30;
     this->width= 40;
@@ -47,6 +47,10 @@ void Knight::addHP(int hp) {
 
 void Knight::set_100_hp() {
     this->health=max_health;
+}
+
+void Knight::set_0_hp() {
+    this->health=0;
 }
 
 void Knight::SetPosition(float x, float y) {
@@ -100,7 +104,7 @@ Dragon::Dragon(float x, float y) {
     this->height= 40;
     this->health = 30;
     this->max_health = 30;
-    this->damage = 5;
+    this->damage = 115;
     this->x = x * 50;
     this->y = y * 50;
     this->position.x = this->x;
