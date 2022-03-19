@@ -1,3 +1,0 @@
-C:/Users/mrnos/CLionProjects/roguelike/cmake-build-debug/CMakeFiles/roguelike.dir
-C:/Users/mrnos/CLionProjects/roguelike/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/mrnos/CLionProjects/roguelike/cmake-build-debug/CMakeFiles/rebuild_cache.dir
